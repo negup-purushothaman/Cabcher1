@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test name="Test_Run_1">
+    <parameter name="dataset" value="1"/>
+    <classes>
+      <class name="Com.ComCast.crm.LoginTestNG.MeterFare"/>
+    </classes>
+  </test>
+
+  <test name="Test_Run_2">
+    <parameter name="dataset" value="2"/>
+    <classes>
+      <class name="Com.ComCast.crm.LoginTestNG.MeterFare"/>
+    </classes>
+  </test>
+
+  <test name="Test_Run_3">
+    <parameter name="dataset" value="3"/>
+    <classes>
+      <class name="Com.ComCast.crm.LoginTestNG.MeterFare"/>
+    </classes>
+  </test>
+</suite>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Test_Run_1(failed)">
+    <parameter name="dataset" value="1"/>
+    <classes>
+      <class name="Com.ComCast.crm.LoginTestNG.MeterFare">
+        <methods>
+          <include name="browserSetup"/>
+          <include name="closeBrowser"/>
+          <include name="logout"/>
+          <include name="loginSetup"/>
+          <include name="MeterFareAdding" invocation-numbers="4"/>
+        </methods>
+      </class> <!-- Com.ComCast.crm.LoginTestNG.MeterFare -->
+    </classes>
+  </test> <!-- Test_Run_1(failed) -->
+  <test thread-count="5" name="Test_Run_2(failed)">
+    <parameter name="dataset" value="2"/>
+    <classes>
+      <class name="Com.ComCast.crm.LoginTestNG.MeterFare">
+        <methods>
+          <include name="browserSetup"/>
+          <include name="logout"/>
+          <include name="closeBrowser"/>
+          <include name="loginSetup"/>
+          <include name="MeterFareAdding"/>
+        </methods>
+      </class> <!-- Com.ComCast.crm.LoginTestNG.MeterFare -->
+    </classes>
+  </test> <!-- Test_Run_2(failed) -->
+  <test thread-count="5" name="Test_Run_3(failed)">
+    <parameter name="dataset" value="3"/>
+    <classes>
+      <class name="Com.ComCast.crm.LoginTestNG.MeterFare">
+        <methods>
+          <include name="browserSetup"/>
+          <include name="logout"/>
+          <include name="closeBrowser"/>
+          <include name="loginSetup"/>
+          <include name="MeterFareAdding" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- Com.ComCast.crm.LoginTestNG.MeterFare -->
+    </classes>
+  </test> <!-- Test_Run_3(failed) -->
+</suite> <!-- Failed suite [Suite] -->
