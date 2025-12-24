@@ -10,6 +10,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import Genericlabaries.JavaUtility;
+
 public class NewBookingObj {
 
 	WebDriver driver;
