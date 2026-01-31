@@ -1,6 +1,5 @@
 package Com.ComCast.crm.LoginTestNG;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -21,72 +20,82 @@ import gereriUtility.ListenerImplementation;
 @Listeners(ListenerImplementation.class)
 public class NewBooking extends BaseClass {
 
-    public JavaUtility random = new JavaUtility();
-    public static String bookingNumber = "";
+	public JavaUtility random = new JavaUtility();
+	public static String bookingNumber = "";
+	public  Excelutility excel ;
+	public WebdriverUtility web;
 
-    @Test(priority = 1)
-    public void BookingDashBoard() throws Throwable {
+	@Test(priority = 1)
+	public void BookingDashBoard() throws Throwable {
 
-        WebdriverUtility web = new WebdriverUtility();
-        NewBookingObj booking = new NewBookingObj(driver);
-        Excelutility excel = new Excelutility();
+		web = new WebdriverUtility();
+		NewBookingObj booking = new NewBookingObj(driver);
+		excel = new Excelutility();
+		// New Booking
+		web.WaitForElementClick(driver, booking.getNewbooking());
+		booking.getNewbooking().click();
 
-        // New Booking
-        web.WaitForElementClick(driver, booking.getNewbooking());
-        booking.getNewbooking().click();
+		// Drop-off
+		booking.getDropoffClick().click();
+		List<WebElement> dropoff = booking.getDropoff();
+		dropoff.get(2).click();
 
-        // Drop-off
-        booking.getDropoffClick().click();
-        List<WebElement> dropoff = booking.getDropoff();
-        dropoff.get(2).click();
+		// Pickup
+		booking.getPickupClick().click();
+		List<WebElement> pickup = booking.getPickup();
+		pickup.get(3).click();
 
-        // Pickup
-        booking.getPickupClick().click();
-        List<WebElement> pickup = booking.getPickup();
-        pickup.get(3).click();
+		// Flight details
 
-        // Flight details
-        booking.getFlightNo().sendKeys("AF1247");
-        booking.getArrivingFrom().sendKeys("London");
-        Assert.assertTrue(false, "Screenshot validation");
-        web.selectIndex(booking.getPickUpMeAfter(), 2);
-        booking.getTerminal().sendKeys("A1577");
+		String Flightdata = excel.getDataFromExcel("NewBooking", 0, 0);
 
-        // Date & time
-        booking.getDateSelection().click();
-        booking.selectDate(2);
+		List<WebElement> flightNo = booking.getFlightNo();
+		flightNo.get(0).sendKeys(Flightdata);
+		String ArrivingFromdata = excel.getDataFromExcel("NewBooking", 0, 1);
+		List<WebElement> Arrivingfrom = booking.getArrivingFrom();
+		Arrivingfrom.get(0).sendKeys(ArrivingFromdata);
+		// Assert.assertTrue(false, "Screenshot validation");
+		web.selectIndex(booking.getPickUpMeAfter(), 2);
+		List<WebElement> Treminal = booking.getTerminal();
+		String TreminalData = excel.getDataFromExcel("NewBooking", 0, 2);
+		Treminal.get(0).sendKeys(TreminalData);
+		// Date & time
+		booking.getDateSelection().click();
+		booking.selectDate(2);
 
-        web.selectIndex(booking.getHours(), 2);
-        web.selectIndex(booking.getMinutes(), 5);
+		web.selectIndex(booking.getHours(), 2);
+		web.selectIndex(booking.getMinutes(), 5);
 
-        // Passenger & luggage
-        web.selectIndex(booking.getPassenger(), 2);
-        web.selectIndex(booking.getHandLuggage(), 2);
-        web.selectIndex(booking.getCheckInLuggage(), 1);
+		// Passenger & luggage
+		web.selectIndex(booking.getPassenger(), 2);
+		web.selectIndex(booking.getHandLuggage(), 2);
+		web.selectIndex(booking.getCheckInLuggage(), 1);
 
-        // Customer details
-        booking.getCustomerName().sendKeys("Test");
-        booking.getEmail().sendKeys("test.customer@cabcher.com");
+		// Customer details
+		String Customerdata = excel.getDataFromExcel("NewBooking", 0, 3);
 
-        web.scrolltoElement(driver, booking.getSubmit());
-        booking.getSubmit().click();
-        Assert.assertTrue(false, "Screenshot validation");
+		List<WebElement> CustomerName = booking.getCustomerName();
+		CustomerName.get(0).sendKeys(Customerdata);
+		String Emaildata = excel.getDataFromExcel("NewBooking", 0, 4);
+		List<WebElement> Email = booking.getEmail();
+		Email.get(0).sendKeys(Emaildata);
 
-        // Capture booking number
-        String bookingText = driver.findElement(
-                By.xpath("//div[@class='alert alert-success text-center']")
-        ).getText();
+		web.scrolltoElement(driver, booking.getSubmit());
+		booking.getSubmit().click();
+		// Assert.assertTrue(false, "Screenshot validation");
 
-        bookingNumber = bookingText.replaceAll("\\D+", "");
-        System.out.println("Booking Number : " + bookingNumber);
+		// Capture booking number
+		String bookingText = driver.findElement(By.xpath("//div[@class='alert alert-success text-center']")).getText();
 
-        excel.SetDataIntoExcel("Sheet1", 0, 0, bookingNumber);
-    }
+		bookingNumber = bookingText.replaceAll("\\D+", "");
+		System.out.println("Booking Number : " + bookingNumber);
 
+		excel.SetDataIntoExcel("Sheet1", 0, 0, bookingNumber);
+	}
 
-@Test(priority = 2)
+	@Test(priority = 2)
 	public void DriverAllocation() throws Throwable {
-
+       
 		WebdriverUtility ResWeb = new WebdriverUtility();
 		DispatchDashBoardObj dispatch = new DispatchDashBoardObj(driver);
 
@@ -118,13 +127,13 @@ public class NewBooking extends BaseClass {
 			driver.findElement(By.xpath("//input[@id=\"sendNotificationDriver\"]")).click();
 
 			driver.findElement(By.xpath("//button[@id=\"driverUpdate\"]")).click();
-            Thread.sleep(15000);
+			Thread.sleep(10000);
 		}
 
 	}
 
 	@Test
-	public void NewbookingCustomerDetailsAccount() throws InterruptedException, IOException {
+	public void NewbookingCustomerDetailsAccount() throws Throwable {
 		WebdriverUtility ResWeb = new WebdriverUtility();
 		NewBookingObj booking = new NewBookingObj(driver);
 
@@ -155,12 +164,15 @@ public class NewBooking extends BaseClass {
 		}
 
 		// Enter flight and arriving details
-		WebElement FlightNo = booking.getFlightNo();
-		ResWeb.WaitForElementClick(driver, FlightNo);
-		FlightNo.sendKeys("AF1247");
-		WebElement ArrivingFrom = booking.getArrivingFrom();
-		ResWeb.WaitForElementClick(driver, ArrivingFrom);
-		ArrivingFrom.sendKeys("London");
+		String Flightdata = excel.getDataFromExcel("NewBooking", 0, 0);
+
+		List<WebElement> flightNo = booking.getFlightNo();
+		flightNo.get(0).sendKeys(Flightdata);
+		String ArrivingFromdata = excel.getDataFromExcel("NewBooking", 0, 1);
+		List<WebElement> Arrivingfrom = booking.getArrivingFrom();
+		Arrivingfrom.get(0).sendKeys(ArrivingFromdata);
+		// Assert.assertTrue(false, "Screenshot validation");
+		web.selectIndex(booking.getPickUpMeAfter(), 2);
 
 // Select Pickup time 
 		WebElement Timedrop = booking.getPickUpMeAfter();
@@ -168,9 +180,9 @@ public class NewBooking extends BaseClass {
 		ResWeb.selectIndex(Timedrop, 2);
 
 		// Terminal
-		WebElement Terminal = booking.getTerminal();
-		ResWeb.WaitForElementClick(driver, Terminal);
-		Terminal.sendKeys("A1577");
+		List<WebElement> Treminal = booking.getTerminal();
+		String TreminalData = excel.getDataFromExcel("NewBooking", 0, 2);
+		Treminal.get(0).sendKeys(TreminalData);
 
 		// Select Date
 		WebElement DateSelection = booking.getDateSelection();
@@ -216,10 +228,14 @@ public class NewBooking extends BaseClass {
 
 		}
 
-		Thread.sleep(2000);
-		WebElement customername = booking.getCustomerName();
-		ResWeb.WaitForElementClick(driver, customername);
-		customername.sendKeys("Test");
+		String Customerdata = excel.getDataFromExcel("NewBooking", 0, 3);
+
+		List<WebElement> CustomerName = booking.getCustomerName();
+		CustomerName.get(0).sendKeys(Customerdata);
+		String Emaildata = excel.getDataFromExcel("NewBooking", 0, 4);
+		List<WebElement> Email = booking.getEmail();
+		Email.get(0).sendKeys(Emaildata);
+
 		WebElement Invoice = booking.getInvoice();
 		ResWeb.WaitForElementClick(driver, Invoice);
 		Invoice.click();
@@ -241,7 +257,7 @@ public class NewBooking extends BaseClass {
 			System.out.println("Booking Number: " + bookingNumber);
 
 			// 3. Get next empty row in Excel //
-			int nextRow = excel.getNextEmptyRow("Sheet1");
+			// int nextRow = excel.getNextEmptyRow("Sheet1");
 
 			// 4. Write booking number to Excel
 			excel.SetDataIntoExcel("Sheet1", i, 0, bookingNumber);
@@ -364,120 +380,118 @@ public class NewBooking extends BaseClass {
 
 	// Createsendactivationemail
 
-	@Test() public void Createsendactivationemail() throws Throwable 
-  {
-  WebdriverUtility ResWeb = new WebdriverUtility(); 
-  NewBookingObj booking = new NewBookingObj(driver);
- 
-  // Click on "New Booking" 
-  WebElement NewBooking = booking.getNewbooking();
-  ResWeb.WaitForElementClick(driver, NewBooking);
-  NewBooking.click();
-  
-  // Drop-off selection 
-  WebElement DropoffClick = booking.getDropoffClick();
-  ResWeb.WaitForElementClick(driver, DropoffClick);
-  DropoffClick.click();
-  Thread.sleep(1000);  
-  List<WebElement> Dropoff = booking.getDropoff();
-  if
-  (!Dropoff.isEmpty()) 
-  { Dropoff.get(2).click();
- 
-  } // Click on "Pickup Click" twice 
-  WebElement PickupClick = booking.getPickupClick(); 
-  ResWeb.WaitForElementClick(driver, PickupClick);
-  PickupClick.click();
-  
-  // Click on "Pickup" 
-  List<WebElement> pickup = booking.getPickup(); 
-  if
-  (!pickup.isEmpty()) { 
-	  pickup.get(1).click();
- 
-  }
-  
-  // Enter flight and arriving details
-  WebElement FlightNo = booking.getFlightNo(); 
-  ResWeb.WaitForElementClick(driver, FlightNo);
-  FlightNo.sendKeys("AF1247");
-  
-  WebElement ArrivingFrom = booking.getArrivingFrom();
-  ResWeb.WaitForElementClick(driver, ArrivingFrom);
-  ArrivingFrom.sendKeys("London");
-  
-  // Select Pickup time
-  WebElement Timedrop = booking.getPickUpMeAfter();
-  ResWeb.WaitForElementClick(driver, Timedrop);
-  ResWeb.selectIndex(Timedrop,2);
-  
- // Terminal 
-  WebElement Terminal = booking.getTerminal();
-  ResWeb.WaitForElementClick(driver, Terminal); 
-  Terminal.sendKeys("A1577");
-  
-  // Select Date 
-  WebElement DateSelection = booking.getDateSelection();
-  ResWeb.WaitForElementClick(driver, DateSelection);
-  DateSelection.click();
-  
-  booking.selectDate(2);
-  
-  // Select Hours and Minutes
-  WebElement Hours = booking.getHours();
-  ResWeb.WaitForElementClick(driver, Hours); 
-  ResWeb.selectIndex(Hours, 2);
-  
-  WebElement Minutes = booking.getMinutes();
-  ResWeb.WaitForElementClick(driver,
-  Minutes); ResWeb.selectIndex(Minutes, 5);
-  
-  // Passenger dropdown 
-  WebElement passenger = booking.getPassenger();
-  ResWeb.WaitForElementClick(driver, passenger);
-  ResWeb.selectIndex(passenger,2);
-  
-  // Hand Luggage 
-  WebElement handLuggage = booking.getHandLuggage();
-  ResWeb.WaitForElementClick(driver, handLuggage);
-  ResWeb.selectIndex(handLuggage, 2);
-  
-  // Check-In Luggage
-  WebElement CheckLuggage = booking.getCheckInLuggage();
-  ResWeb.WaitForElementClick(driver, CheckLuggage);
-  ResWeb.selectIndex(CheckLuggage, 1);
-  
-  // Passenger detail
-  
-  WebElement customername = booking.getCustomerName();
-  ResWeb.WaitForElementClick(driver, customername);
-  customername.sendKeys("Test");
-  
-  WebElement Email = booking.getEmail();
-  ResWeb.WaitForElementClick(driver,Email);
-  
-  WebElement Createsendactivationemail =booking.getCreatesendactivationemail();
-  ResWeb.WaitForElementClick(driver,Createsendactivationemail); 
-  ResWeb.scrolltoElement(driver,Createsendactivationemail);
-  Createsendactivationemail.click();
-  
-  
-  WebElement submit = booking.getSubmit();
-  ResWeb.scrolltoElement(driver,
-  submit); submit.click(); Excelutility excel = new Excelutility();
-  
-  for (int i = 0; i < 1; i++) { // 2. Extract booking ID from success alert
-  String bookingIDText = driver.findElement(By.xpath("//div[@class='alert alert-success text-center']"
-  )) .getText(); 
-  String bookingNumber = bookingIDText.replaceAll("\\D+", "");
-  
-  System.out.println("Booking Number: " + bookingNumber);
-  
-  
- // 4. Write booking number to Excel 
-  excel.SetDataIntoExcel("Sheet1", i, 0,bookingNumber); }
- 
-  }
+	@Test()
+	public void Createsendactivationemail() throws Throwable {
+		WebdriverUtility ResWeb = new WebdriverUtility();
+		NewBookingObj booking = new NewBookingObj(driver);
+
+		// Click on "New Booking"
+		WebElement NewBooking = booking.getNewbooking();
+		ResWeb.WaitForElementClick(driver, NewBooking);
+		NewBooking.click();
+
+		// Drop-off selection
+		WebElement DropoffClick = booking.getDropoffClick();
+		ResWeb.WaitForElementClick(driver, DropoffClick);
+		DropoffClick.click();
+		Thread.sleep(1000);
+		List<WebElement> Dropoff = booking.getDropoff();
+		if (!Dropoff.isEmpty()) {
+			Dropoff.get(2).click();
+
+		} // Click on "Pickup Click" twice
+		WebElement PickupClick = booking.getPickupClick();
+		ResWeb.WaitForElementClick(driver, PickupClick);
+		PickupClick.click();
+
+		// Click on "Pickup"
+		List<WebElement> pickup = booking.getPickup();
+		if (!pickup.isEmpty()) {
+			pickup.get(1).click();
+
+		}
+
+		// Enter flight and arriving details
+		WebElement FlightNo = booking.getFlightNo();
+		ResWeb.WaitForElementClick(driver, FlightNo);
+		FlightNo.sendKeys("AF1247");
+
+		WebElement ArrivingFrom = booking.getArrivingFrom();
+		ResWeb.WaitForElementClick(driver, ArrivingFrom);
+		ArrivingFrom.sendKeys("London");
+
+		// Select Pickup time
+		WebElement Timedrop = booking.getPickUpMeAfter();
+		ResWeb.WaitForElementClick(driver, Timedrop);
+		ResWeb.selectIndex(Timedrop, 2);
+
+		// Terminal
+		WebElement Terminal = booking.getTerminal();
+		ResWeb.WaitForElementClick(driver, Terminal);
+		Terminal.sendKeys("A1577");
+
+		// Select Date
+		WebElement DateSelection = booking.getDateSelection();
+		ResWeb.WaitForElementClick(driver, DateSelection);
+		DateSelection.click();
+
+		booking.selectDate(2);
+
+		// Select Hours and Minutes
+		WebElement Hours = booking.getHours();
+		ResWeb.WaitForElementClick(driver, Hours);
+		ResWeb.selectIndex(Hours, 2);
+
+		WebElement Minutes = booking.getMinutes();
+		ResWeb.WaitForElementClick(driver, Minutes);
+		ResWeb.selectIndex(Minutes, 5);
+
+		// Passenger dropdown
+		WebElement passenger = booking.getPassenger();
+		ResWeb.WaitForElementClick(driver, passenger);
+		ResWeb.selectIndex(passenger, 2);
+
+		// Hand Luggage
+		WebElement handLuggage = booking.getHandLuggage();
+		ResWeb.WaitForElementClick(driver, handLuggage);
+		ResWeb.selectIndex(handLuggage, 2);
+
+		// Check-In Luggage
+		WebElement CheckLuggage = booking.getCheckInLuggage();
+		ResWeb.WaitForElementClick(driver, CheckLuggage);
+		ResWeb.selectIndex(CheckLuggage, 1);
+
+		// Passenger detail
+
+		WebElement customername = booking.getCustomerName();
+		ResWeb.WaitForElementClick(driver, customername);
+		customername.sendKeys("Test");
+
+		WebElement Email = booking.getEmail();
+		ResWeb.WaitForElementClick(driver, Email);
+
+		WebElement Createsendactivationemail = booking.getCreatesendactivationemail();
+		ResWeb.WaitForElementClick(driver, Createsendactivationemail);
+		ResWeb.scrolltoElement(driver, Createsendactivationemail);
+		Createsendactivationemail.click();
+
+		WebElement submit = booking.getSubmit();
+		ResWeb.scrolltoElement(driver, submit);
+		submit.click();
+		Excelutility excel = new Excelutility();
+
+		for (int i = 0; i < 1; i++) { // 2. Extract booking ID from success alert
+			String bookingIDText = driver.findElement(By.xpath("//div[@class='alert alert-success text-center']"))
+					.getText();
+			String bookingNumber = bookingIDText.replaceAll("\\D+", "");
+
+			System.out.println("Booking Number: " + bookingNumber);
+
+			// 4. Write booking number to Excel
+			excel.SetDataIntoExcel("Sheet1", i, 0, bookingNumber);
+		}
+
+	}
 
 	@Test()
 	public void Createactivatewithoutemail() throws Throwable {

@@ -3,15 +3,16 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Com.ComCast.crm.LoginTestNG.NewBooking">
+      <class name="cabcher.pricing.tests.Extra_ServicesTestNG">
         <methods>
           <include name="browserSetup"/>
-          <include name="BookingDashBoard"/>
-          <include name="closeBrowser"/>
           <include name="logout"/>
+          <include name="closeBrowser"/>
           <include name="loginSetup"/>
+          <include name="Extra_Services_YES"/>
+          <include name="Extra_Services_NO"/>
         </methods>
-      </class> <!-- Com.ComCast.crm.LoginTestNG.NewBooking -->
+      </class> <!-- cabcher.pricing.tests.Extra_ServicesTestNG -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

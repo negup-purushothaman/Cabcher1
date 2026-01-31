@@ -35,12 +35,7 @@ public class MeterFareGeneralsetting {
 	public List<WebElement> getMeterFaresetting() {
 		return MeterFaresetting;
 	}
-	
 
-	
-	
-
-	 //saloon car 
 	
 	
 }

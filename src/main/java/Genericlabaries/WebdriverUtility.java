@@ -1,14 +1,13 @@
 package Genericlabaries;
 
-import java.io.File;
+
 import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -96,11 +95,21 @@ public class WebdriverUtility {
 		sel.selectByVisibleText(text);
 	}
 
-	public void selectIndex(WebElement element, int text) {
+	public void selectIndex(WebElement element, int indexes) {
 		Select sel = new Select(element);
-		sel.selectByIndex(text);
+		sel.selectByIndex(indexes);
 
 	}
+	
+	public List<WebElement> selectByoption(WebElement element, int indexes) {
+		Select sel = new Select(element);
+		sel.getOptions();
+     return null;
+	}
+	
+	
+	
+	
 
 	public void mousemoveOnElement(WebDriver driver, WebElement element) {
 
@@ -138,11 +147,12 @@ public class WebdriverUtility {
 		}
 	}
 
-	public void TakescreenShot(WebDriver driver, String foldername) {
-		TakesScreenshot screen = (TakesScreenshot) driver;
-		File file1 = screen.getScreenshotAs(OutputType.FILE);
-		File desfile = new File("./Screenshot/foldername");
-	}
+	/*
+	 * public void TakescreenShot(WebDriver driver, String foldername) {
+	 * TakesScreenshot screen = (TakesScreenshot) driver; //File file1 =
+	 * screen.getScreenshotAs(OutputType.FILE); //File desfile = new
+	 * File("./Screenshot/foldername"); }
+	 */
 
 	public Alert AlertHandel(WebDriver driver) {
 		Alert alt = driver.switchTo().alert();
@@ -150,5 +160,40 @@ public class WebdriverUtility {
 		return alt;
 
 	}
+
+
+	public List<WebElement> getOptions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public void waitForInvisibilityOfElement(WebDriver driver, WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.invisibilityOf(element));
+	
+	}
+
+
+	public boolean isElementPresent(WebElement element) {
+	    try {
+	        return element.isDisplayed();
+	    } catch (Exception e) {
+	        return false;
+	    }
+	}
+
+
+	public WebElement waitForVisibility(WebDriver driver, WebElement element, int timeoutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
+        return wait.until(ExpectedConditions.visibilityOf(element));
+		// TODO Auto-generated method stub
+	}
+	public void waitUntilElementVisible(WebDriver driver, By locator) {
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	}
+
+
 
 }

@@ -6,15 +6,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import Genericlabaries.DashboardReusableMethod.ReusableMethods;
 import Genericlabaries.WebdriverUtility;
 import java.time.Duration;
 
 public class DemoDashBoardLoginPage extends WebdriverUtility {
 
     private WebDriver driver;
-    private ReusableMethods reusable = new ReusableMethods();
-
     public DemoDashBoardLoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -58,11 +55,11 @@ public class DemoDashBoardLoginPage extends WebdriverUtility {
         // Check if DashboardLogin button is present
         try {
             if (getDashboardLogin().isDisplayed()) {
-            	Thread.sleep(1000);
+            //	Thread.sleep(1000);
                 getDashboardLogin().click();
 
                 // Wait until URL changes to dashboard login page
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
                 wait.until(ExpectedConditions.urlContains("dashboard/login"));
             }
         } catch (Exception e) {

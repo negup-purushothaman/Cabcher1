@@ -23,11 +23,11 @@ public class DashboardReusableMethod {
     public String Password() {
         return "@a123456b";
     }
- // https://cabcher-dev.negup.com/dashboard/login
+ //https://cabcher-stag1ng.negup.com/dashboard/dispatch
    // https://demo.cabcher.com/dashboard/login
     // ✅ Static nested class for dashboard URL
     public static class ReusableMethods {
-        private static String DASHBOARD_URL ="https://cabcher-dev.negup.com/dashboard/login"; // default URL
+        private static String DASHBOARD_URL ="https://demo.cabcher.com/dashboard/login"; // default URL
 
         public String getDashboardLoginUrl() {
             return DASHBOARD_URL;

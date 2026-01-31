@@ -14,19 +14,14 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-
-
-
-
-
 public class Democabookie   {
 	public static void main(String[] arg) throws InterruptedException {
 		// Step 1: Set Chrome preferences to block browser notification popup
 		
 		
 		 ChromeOptions options=new ChromeOptions();
-		 options.addArguments("disable-notifications"); WebDriver driver = new
-		 ChromeDriver(options);
+		 options.addArguments("disable-notifications"); 
+		 WebDriver driver = new ChromeDriver(options);
 		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		 
 
@@ -34,6 +29,7 @@ public class Democabookie   {
 
 		driver.manage().window().maximize();
 		driver.findElement(By.xpath("//button[@id=\"btnCredentials\"]")).click();
+		Thread.sleep(2000);
 		driver.findElement(By.xpath("//input[@name=\"txtAdminEmail\"]")).sendKeys("test.customer@cabcher.com");
 		driver.findElement(By.xpath("//input[@name=\"txtPassword\"]")).sendKeys("a123456b");
 		Actions act = new Actions(driver);

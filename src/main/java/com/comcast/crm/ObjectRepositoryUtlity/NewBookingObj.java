@@ -43,16 +43,16 @@ public class NewBookingObj {
 
 	//li[@class="ui-menu-item"]
 	@FindBy(xpath = "//input[@name=\"pickUpFields1['flightno']\"]")
-	private WebElement FlightNo;
+	private List<WebElement>  FlightNo;
 
 	@FindBy(xpath = "//input[@name=\"pickUpFields1['arrivingfrom']\"]")
-	private WebElement ArrivingFrom;
+	private List<WebElement>  ArrivingFrom;
 
 	@FindBy(xpath = "//select[@name=\"pickUpFields1['pickmeafter']\"]")
 	private WebElement pickUpMeAfter;
 
 	@FindBy(xpath = "//input[@name=\"dropFields1['terminal']\"]")
-	private WebElement Terminal;
+	private List<WebElement>  Terminal;
 
 	@FindBy(id = "customerID")
 	private WebElement Selectcustomer;
@@ -75,10 +75,10 @@ public class NewBookingObj {
 	private WebElement submit;
 
 	@FindBy(id = "paxName")
-	private WebElement CustomerName;
+	private List<WebElement> CustomerName;
 
 	@FindBy(id = "paxEmail")
-	private WebElement Email;
+	private List<WebElement> Email;
 
 	@FindBy(id = "contactNumber")
 	private WebElement contactNumber;
@@ -192,11 +192,11 @@ public class NewBookingObj {
 		return customerCategoryAccount;
 	}
 
-	public WebElement getCustomerName() {
+	public List<WebElement> getCustomerName() {
 		return CustomerName;
 	}
 
-	public WebElement getEmail() {
+	public List<WebElement> getEmail() {
 		return Email;
 	}
 
@@ -243,15 +243,15 @@ public class NewBookingObj {
 		return Minutes;
 	}
 
-	public WebElement getTerminal() {
+	public List<WebElement>  getTerminal() {
 		return Terminal;
 	}
 
-	public WebElement getFlightNo() {
+	public List<WebElement>  getFlightNo() {
 		return FlightNo;
 	}
 
-	public WebElement getArrivingFrom() {
+	public List<WebElement>  getArrivingFrom() {
 		return ArrivingFrom;
 	}
 
@@ -291,5 +291,6 @@ public class NewBookingObj {
 		// TODO Auto-generated method stub
 		return driverFare;
 	}
+
 
 }
