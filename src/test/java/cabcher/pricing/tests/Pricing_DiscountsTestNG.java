@@ -59,7 +59,7 @@ public class Pricing_DiscountsTestNG extends BaseClass {
 				String locationPrice = excel.getDataFromExcel("Fixedpickup", j, k);
 				priceUpdate.get(k).clear();
 				priceUpdate.get(k).sendKeys(locationPrice);
-				Thread.sleep(1000);
+				Thread.sleep(1000);  
 				
 				Surcharges.getFromPeriod().click();
 

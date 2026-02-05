@@ -8,8 +8,6 @@
           <include name="Createactivatewithoutemail"/>
           <include name="NewbookingCustomerDetailsAccount"/>
           <include name="browserSetup"/>
-          <include name="BookingDashBoard"/>
-          <include name="DriverAllocation"/>
           <include name="logout"/>
           <include name="closeBrowser"/>
           <include name="loginSetup"/>

@@ -68,6 +68,8 @@ public class Email_Settings extends BaseClass {
 			Updatebutton.click();
 
 			Thread.sleep(2000);
+			
+			
 		}
 
 	}
