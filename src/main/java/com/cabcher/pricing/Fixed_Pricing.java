@@ -19,7 +19,7 @@ public class Fixed_Pricing {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath="//a[text()='Fixed']")
+	@FindBy(xpath="//a[contains(text(),'Fixed Pricing')]")
 	 private WebElement  Fixed_pricing;
 	//a[contains(.,\"Fixed Pricing\")]
 	
@@ -83,7 +83,23 @@ public class Fixed_Pricing {
 		return FixedCustomerPrice;
 	}
 
+	@FindBy(xpath="//div[@class=\"btn-group btn-group-sm\"]/descendant::i[@class=\"fa-solid fa-trash\"]")
+	 private List<WebElement>  Delete;
 	
+	@FindBy(id="account_id")
+	 private WebElement  AccountSelect;
+	
+	
+	
+	
+	public WebElement getAccountSelect() {
+		return AccountSelect;
+	}
+
+	public List<WebElement> getDelete() {
+		return Delete;
+	}
+
 	@FindBy(xpath="//span[contains(.,'Add New')]")
 	 private WebElement  AddButton;
 

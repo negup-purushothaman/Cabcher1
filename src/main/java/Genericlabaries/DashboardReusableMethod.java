@@ -27,7 +27,7 @@ public class DashboardReusableMethod {
    // https://demo.cabcher.com/dashboard/login
     // ✅ Static nested class for dashboard URL
     public static class ReusableMethods {
-        private static String DASHBOARD_URL ="https://demo.cabcher.com/dashboard/login"; // default URL
+        private static String DASHBOARD_URL ="https://cabcher-stag1ng.negup.com/dashboard/dispatch"; // default URL
 
         public String getDashboardLoginUrl() {
             return DASHBOARD_URL;

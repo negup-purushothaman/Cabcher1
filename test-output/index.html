@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\Tester\AppData\Local\Temp\testng-eclipse--439813756\testng-customsuite.xml</span>
+                    <span>C:\Users\Tester\AppData\Local\Temp\testng-eclipse--282531927\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -103,7 +103,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="Com.ComCast.crm.LoginTestNG.NewBooking" class="method navigator-link" hash-for-method="Createactivatesendwelcomeemail">Createactivatesendwelcomeemail</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="cabcher.pricing.tests.FixedPricingTestNG" class="method navigator-link" hash-for-method="AccountPrice">AccountPrice</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -121,16 +121,23 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">Com.ComCast.crm.LoginTestNG.NewBooking</span>
+              <span class="class-name">cabcher.pricing.tests.FixedPricingTestNG</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="Createactivatesendwelcomeemail">
-                  </a> <!-- Createactivatesendwelcomeemail -->
-                  <span class="method-name">Createactivatesendwelcomeemail</span>
-                  <div class="stack-trace">java.lang.NullPointerException: Cannot invoke &quot;Genericlabaries.Excelutility.getDataFromExcel(String, int, int)&quot; because &quot;this.excel&quot; is null
-	at Com.ComCast.crm.LoginTestNG.NewBooking.Createactivatesendwelcomeemail(NewBooking.java:657)
+                  <a name="AccountPrice">
+                  </a> <!-- AccountPrice -->
+                  <span class="method-name">AccountPrice</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: Cannot locate option with index: 3
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.25.0&apos;, revision: &apos;8a8aea2337&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.Select.setSelectedByIndex(Select.java:303)
+	at org.openqa.selenium.support.ui.Select.selectByIndex(Select.java:179)
+	at Genericlabaries.WebdriverUtility.selectIndex(WebdriverUtility.java:100)
+	at cabcher.pricing.tests.FixedPricingTestNG.AccountPrice(FixedPricingTestNG.java:208)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -166,7 +173,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\Tester\AppData\Local\Temp\testng-eclipse--439813756\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\Tester\AppData\Local\Temp\testng-eclipse--282531927\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -175,11 +182,11 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;Com.ComCast.crm.LoginTestNG.NewBooking&quot;&gt;
+      &lt;class name=&quot;cabcher.pricing.tests.FixedPricingTestNG&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;Createactivatesendwelcomeemail&quot;/&gt;
+          &lt;include name=&quot;AccountPrice&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- Com.ComCast.crm.LoginTestNG.NewBooking --&gt;
+      &lt;/class&gt; &lt;!-- cabcher.pricing.tests.FixedPricingTestNG --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -221,14 +228,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'Createactivatesendwelcomeemail')
-data.setCell(0, 2, 'Com.ComCast.crm.LoginTestNG.NewBooking')
-data.setCell(0, 3, 4828);
+data.setCell(0, 1, 'AccountPrice')
+data.setCell(0, 2, 'cabcher.pricing.tests.FixedPricingTestNG')
+data.setCell(0, 3, 38152);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 4 seconds</span>
+              <span class="suite-total-time">Total running time: 38 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -243,23 +250,19 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">6 ignored methods</span>
+            <span class="header-content">4 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">Com.ComCast.crm.LoginTestNG.NewBooking</span>
+              <span class="ignored-class-name">cabcher.pricing.tests.FixedPricingTestNG</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">Createsendactivationemail</span>
+                <span class="ignored-method-name">TimingFixedPrice</span>
                 <br/>
-                <span class="ignored-method-name">DriverAllocation</span>
+                <span class="ignored-method-name">CopyPricing</span>
                 <br/>
-                <span class="ignored-method-name">BookingDashBoard</span>
+                <span class="ignored-method-name">Deleteprice</span>
                 <br/>
-                <span class="ignored-method-name">NewbookingCustomerDetailsAccount</span>
-                <br/>
-                <span class="ignored-method-name">Dontcreate</span>
-                <br/>
-                <span class="ignored-method-name">Createactivatewithoutemail</span>
+                <span class="ignored-method-name">FixedPricing</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -271,28 +274,28 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">Com.ComCast.crm.LoginTestNG.NewBooking</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">cabcher.pricing.tests.FixedPricingTestNG</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">browserSetup</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-class before -->
               <div class="configuration-method before">
                 <span class="method-name">loginSetup</span>
-                <span class="method-start">1265 ms</span>
+                <span class="method-start">1173 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">Createactivatesendwelcomeemail</span>
-                <span class="method-start">5529 ms</span>
+                <span class="method-name">AccountPrice</span>
+                <span class="method-start">19120 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">logout</span>
-                <span class="method-start">10608 ms</span>
+                <span class="method-start">57284 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-class after">
                 <span class="method-name">closeBrowser</span>
-                <span class="method-start">14716 ms</span>
+                <span class="method-start">61684 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

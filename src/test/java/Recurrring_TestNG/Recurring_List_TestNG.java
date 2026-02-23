@@ -23,7 +23,7 @@ public class Recurring_List_TestNG extends BaseClass {
 		WebdriverUtility web = new WebdriverUtility();
 		Excelutility Excel = new Excelutility();
 		Accounts_Obj Account = new Accounts_Obj(driver);
-		Acution_Obj Acution = new Acution_Obj(driver);
+	//	Acution_Obj Acution = new Acution_Obj(driver);
 		NewBookingObj booking = new NewBookingObj(driver);
 		Recurring_List List = new Recurring_List(driver);
 
@@ -102,17 +102,27 @@ public class Recurring_List_TestNG extends BaseClass {
 
 		WebElement Scroll = List.getScrollelement();
 		web.scrolltoElement(driver, Scroll);
-		// Drop-off
+
+
+		WebElement add = driver.findElement(By.xpath("//div[contains(text(),'Additional services you might want?')]"));
+		web.scrolltoElement(driver, add);
 		booking.getDropoffClick().click();
 		Thread.sleep(2000);
 		List<WebElement> dropoff = booking.getDropoff();
-		// web.scrolltoElement(driver, SearchDriver);
-		dropoff.get(2).click();
+		web.scrolltoElement(driver, dropoff.get(0));
+		dropoff.get(3).click();
 
-		// Pickup
+
 		booking.getPickupClick().click();
 		List<WebElement> pickup = booking.getPickup();
-		pickup.get(3).click();
+		web.scrolltoElement(driver, pickup.get(0));
+		pickup.get(2).click();
+//
+//		WebElement ScrollVehicle = List.getscrollVehicle();
+//		web.scrolltoElement(driver, ScrollVehicle);
+		// Drop-off
+
+		// Pickup
 
 		// Flight details
 
@@ -128,9 +138,6 @@ public class Recurring_List_TestNG extends BaseClass {
 		List<WebElement> Treminal = booking.getTerminal();
 		String TreminalData = Excel.getDataFromExcel("NewBooking", 0, 2);
 		Treminal.get(0).sendKeys(TreminalData);
-
-		WebElement ScrollVehicle = List.getscrollVehicle();
-		web.scrolltoElement(driver, ScrollVehicle);
 
 		List.getSelectvehicle().click();
 		String Recurringdata = Excel.getDataFromExcel("Recurring", 0, 5);
@@ -149,7 +156,7 @@ public class Recurring_List_TestNG extends BaseClass {
 		CustomerName.get(0).clear();
 		CustomerName.get(0).sendKeys(Customerdata);
 		Thread.sleep(3000);
-		
+
 		List<WebElement> Email = booking.getEmail();
 		String Emaildata = Excel.getDataFromExcel("NewBooking", 0, 4);
 		Email.get(0).clear();

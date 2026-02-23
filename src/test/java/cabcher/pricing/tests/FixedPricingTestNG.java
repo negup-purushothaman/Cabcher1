@@ -2,6 +2,7 @@ package cabcher.pricing.tests;
 
 import java.util.List;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
@@ -96,18 +97,17 @@ public class FixedPricingTestNG extends BaseClass {
 			fixedPrice.getAddButton().click();
 			Thread.sleep(2000);
 			WebElement timeSlot = fixedPrice.getTimeSlot();
-               
-			if (timeSlot.isDisplayed() && timeSlot.isEnabled()) {
-			    Select select = new Select(timeSlot);
-			    if (select.getOptions().size() > run) {
-			        web.selectIndex(timeSlot, run);
-			    } else {
-			        System.out.println("No time slots available, skipping selection");
-			    }
-			} else {
-			    System.out.println("Time slot element not available, continuing script");
-			}
 
+			if (timeSlot.isDisplayed() && timeSlot.isEnabled()) {
+				Select select = new Select(timeSlot);
+				if (select.getOptions().size() > run) {
+					web.selectIndex(timeSlot, run);
+				} else {
+					System.out.println("No time slots available, skipping selection");
+				}
+			} else {
+				System.out.println("Time slot element not available, continuing script");
+			}
 
 			// 📄 Pickup & Drop (Different row each run)
 			String pickupData = excel.getDataFromExcel("Fixedpickup", run, 0);
@@ -151,7 +151,7 @@ public class FixedPricingTestNG extends BaseClass {
 		WebdriverUtility web = new WebdriverUtility();
 		Fixed_Pricing fixedPrice = new Fixed_Pricing(driver);
 		PricingObj price = new PricingObj(driver);
-		//Excelutility excel = new Excelutility();
+		// Excelutility excel = new Excelutility();
 
 		// Navigate to Fixed Pricing
 		web.WaitForElementClick(driver, price.getPricing());
@@ -167,7 +167,7 @@ public class FixedPricingTestNG extends BaseClass {
 			Thread.sleep(2000);
 
 			WebElement timeSlot = fixedPrice.CopyPricingTimefrom();
-			//String indexes = excel.getDataFromExcel("Fixedpickup", run, 0);
+			// String indexes = excel.getDataFromExcel("Fixedpickup", run, 0);
 
 			web.selectIndex(timeSlot, run);
 
@@ -191,7 +191,7 @@ public class FixedPricingTestNG extends BaseClass {
 		for (int account = 1; account <= 10; account++) {
 
 			WebElement Accountprice = fixedPrice.getAccountPrice();
-			
+
 			web.selectIndex(Accountprice, account);
 
 			for (int run = 0; run <= 10; run++) {
@@ -203,7 +203,7 @@ public class FixedPricingTestNG extends BaseClass {
 				fixedPrice.getAddButton().click();
 				Thread.sleep(2000);
 				WebElement timeSlot = fixedPrice.getTimeSlot();
-				//String indexes = excel.getDataFromExcel("Fixedpickup", run, 0);
+				// String indexes = excel.getDataFromExcel("Fixedpickup", run, 0);
 
 				web.selectIndex(timeSlot, run);
 
@@ -244,4 +244,31 @@ public class FixedPricingTestNG extends BaseClass {
 
 		}
 	}
+
+	@Test
+	public void Deleteprice() throws Throwable {
+
+		WebdriverUtility web = new WebdriverUtility();
+		Fixed_Pricing fixedPrice = new Fixed_Pricing(driver);
+		PricingObj price = new PricingObj(driver);
+		Excelutility excel = new Excelutility();
+
+		// Navigate to Fixed Pricing
+		web.WaitForElementClick(driver, price.getPricing());
+		price.getPricing().click();
+		fixedPrice.getFixed_pricing().click();
+		WebElement Account = fixedPrice.getAccountSelect();
+		web.selectIndex(Account, 8);
+		for(int i=0;i<40;i++) { 
+		List<WebElement>Delete =fixedPrice.getDelete();
+		Thread.sleep(4000);
+		 Delete.get(i).click();
+        Alert alt=driver.switchTo().alert();
+        alt.accept();
+		
+		}
+	}
 }
+
+
+
